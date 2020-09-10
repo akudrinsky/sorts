@@ -1,5 +1,7 @@
 #include <algorithm>
 
+void genData();
+
 template<typename T>
 void bubbleSort(T* data, int size) {
     int preSize = size - 1;

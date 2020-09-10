@@ -13,3 +13,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 experiment: experiments/experiments.cpp
 	g++ -arch x86_64 -framework OpenGL -I/usr/local/include -L/usr/local/lib  -o experiments/experiment experiments/experiments.cpp -lglfw.3 -lGLEW.2.1.0
+
+genArrays: data/gen-sort-tests.py
+	./data/gen-sort-tests.py
