@@ -3,14 +3,14 @@
 Configs = {
     "filename": "data/tests.txt",
     "length": {
-        "start": 10,
+        "start": 5,
         "end": 1000,
-        "step": 10
+        "step": 50
     },
-    "n_cases": 50,
+    "n_cases": 20,
     "values": {
         "min": 0,
-        "max": 10 ** 6
+        "max": 10 ** 3
     }
 }
 
@@ -18,6 +18,9 @@ import random
 import sys
 
 def makeTest(file, testSize):
+    """
+    Writes test array of a given size to a file in a form "length: num_1 num_2 ... num_length"
+    """
     data = [random.randint(Configs["values"]["min"], Configs["values"]["max"]) for i in range(testSize)]
     file.write(str(testSize) + ": ")
     file.write(" ".join(str(number) for number in data))
