@@ -1,8 +1,22 @@
 #include "../include/graphics.hpp"
 
+void fun() {
+    printf("Quit\n");
+}
+
 void MakeApp() {
     application app;
-    app.setButtons();
+    /*
+    app.newButton(
+        Button(
+            sf::Color(235, 100, 235, 100),
+            sf::Color(100, 235, 100, 100),
+            "Quit",
+            sf::Vector2f(10, 10),
+            fun
+        )
+    );
+    */
 
     app.eventLoop();
 }
@@ -43,11 +57,12 @@ void application::eventLoop() {
 
         //window.clear();
         window.draw(background);
+        for (auto button : buttons) {
+            window.draw(button);
+        }
         window.display();
     }
 }
-
-
 
 sf::Sprite application::setBackground() {
     sf::Texture texture;
@@ -59,8 +74,8 @@ sf::Sprite application::setBackground() {
     return spite;
 }
 
-void application::setButtons() {
-    
+void application::newButton(const Button& newButton) {
+    buttons.push_back(newButton);
 }
 
 void application::checkClick(int x_coord, int y_coord) {

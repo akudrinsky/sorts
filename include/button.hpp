@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <functional>
 
-class Button : sf::Drawable {
+class Button : public sf::Drawable {
 public:
     Button(const sf::Color& notClickedColor, 
             const sf::Color& ClickedColor, 

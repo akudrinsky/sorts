@@ -14,12 +14,14 @@ public:
 
     void eventLoop();
 
+    //void shutDown();
+
     //~application();
 
 private:
     sf::RenderWindow window;
     sf::Sprite background;
-    std::vector<Button> buttons; //sf::Drawable
+    std::vector<Button> buttons;
 
     bool lostFocus;
 
@@ -27,7 +29,7 @@ private:
 
     sf::Sprite setBackground();
     void setPlots();
-    void setButtons();
+    void newButton(const Button& newButton);
 
     friend void MakeApp();
 };
