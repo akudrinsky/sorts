@@ -19,6 +19,7 @@ public:
 private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
+    // DO NOT use it - really heavy. Better to write basic class functor and inherit from it.
     std::function<void()> action; // TODO: write mine.
 
     sf::Sprite Clicked;

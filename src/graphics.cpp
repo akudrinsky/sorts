@@ -5,7 +5,7 @@ void fun() {
 }
 
 void MakeApp() {
-    application app;
+    application app("data/background.jpg");
     /*
     app.newButton(
         Button(
@@ -21,10 +21,9 @@ void MakeApp() {
     app.eventLoop();
 }
 
-application::application(): window(sf::VideoMode::getDesktopMode(), "Sort algorithms"), 
-                                background(setBackground()), 
+application::application(const char* backgroundPath): window(sf::VideoMode::getDesktopMode(), "Sort algorithms"), 
                                 lostFocus(false) {
-    
+    setBackground(backgroundPath);
 }
 
 void application::eventLoop() {
@@ -32,30 +31,30 @@ void application::eventLoop() {
         sf::Event event;
         while (window.pollEvent(event)) {
             switch (event.type) {
-            case sf::Event::Closed: {
-                window.close();
-                break;
-            }
-            case sf::Event::LostFocus: {
-                lostFocus = true;
-                break;
-            }
-            case sf::Event::GainedFocus: {
-                if (lostFocus) {
-                    printf("Focus was lost\n");
+                case sf::Event::Closed: {
+                    window.close();
+                    break;
                 }
-                break;
-            }
-            case sf::Event::MouseButtonPressed: {
-                checkClick(event.mouseButton.x, event.mouseButton.y);
-                break;
-            }
-            default:
-                break;
+                case sf::Event::LostFocus: {
+                    lostFocus = true;
+                    break;
+                }
+                case sf::Event::GainedFocus: {
+                    if (lostFocus) {
+                        printf("Focus was lost\n");
+                    }
+                    break;
+                }
+                case sf::Event::MouseButtonPressed: {
+                    checkClick(event.mouseButton.x, event.mouseButton.y);
+                    break;
+                }
+                default:
+                    break;
             };
         }
 
-        //window.clear();
+        window.clear();
         window.draw(background);
         for (auto button : buttons) {
             window.draw(button);
@@ -64,14 +63,12 @@ void application::eventLoop() {
     }
 }
 
-sf::Sprite application::setBackground() {
-    sf::Texture texture;
-    texture.loadFromFile("data/background.jpg");
+void application::setBackground(const char* backgroundPath) {
+    backgroundTexture.loadFromFile(backgroundPath);
 
-    sf::Sprite spite(texture);
-    spite.setScale(window.getSize().x, window.getSize().y);
+    background = sf::Sprite (backgroundTexture);
+    background.setScale(window.getSize().x, window.getSize().y);
     //spite.scale(window.getSize().x / spite.getLocalBounds().width, window.getSize().y / spite.getLocalBounds().height);
-    return spite;
 }
 
 void application::newButton(const Button& newButton) {

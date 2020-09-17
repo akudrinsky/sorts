@@ -10,7 +10,9 @@ void MakeApp();
 
 class application {
 public:
-    application();
+    application(const char* backgroundPath);
+    application() = delete;
+    NON_COPYBLE(application)
 
     void eventLoop();
 
@@ -20,14 +22,17 @@ public:
 
 private:
     sf::RenderWindow window;
+
+    sf::Texture backgroundTexture;
     sf::Sprite background;
     std::vector<Button> buttons;
+
 
     bool lostFocus;
 
     void checkClick(int x_coord, int y_coord);
 
-    sf::Sprite setBackground();
+    void setBackground(const char* backgroundPath);
     void setPlots();
     void newButton(const Button& newButton);
 
