@@ -17,8 +17,7 @@ namespace {
 Button::Button(const sf::Color& notClickedColor, 
                 const sf::Color& ClickedColor, 
                 const sf::String& text, 
-                const sf::Vector2f& location, 
-                std::function<void()> action): action(action), info(text) {
+                const sf::Vector2f& location): info(text) {
     Clicked.setColor(ClickedColor);
     notClicked.setColor(notClickedColor);
 

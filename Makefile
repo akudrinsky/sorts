@@ -3,7 +3,7 @@ OBJ_DIR := bin
 SRC_FILES := $(wildcard $(SRC_DIR)/*.cpp)
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
 LDFLAGS := -Wall -lsfml-graphics -lsfml-window -lsfml-system
-CPPFLAGS := -std=c++17
+CPPFLAGS := -std=c++17 # -g3
 
 executable: $(OBJ_FILES)
 	g++ $(LDFLAGS) -o $@ $^ 

@@ -8,8 +8,7 @@ public:
     Button(const sf::Color& notClickedColor, 
             const sf::Color& ClickedColor, 
             const sf::String& text, 
-            const sf::Vector2f& location, 
-            std::function<void()> action);
+            const sf::Vector2f& location);
 
     //~Button();
     bool isInside(const sf::Vector2f& location);

@@ -6,18 +6,16 @@ void fun() {
 
 void MakeApp() {
     application app("data/background.jpg");
-    /*
+    
     app.newButton(
         Button(
             sf::Color(235, 100, 235, 100),
             sf::Color(100, 235, 100, 100),
             "Quit",
-            sf::Vector2f(10, 10),
-            fun
+            sf::Vector2f(10, 10)
         )
     );
-    */
-
+    
     app.eventLoop();
 }
 
@@ -67,8 +65,8 @@ void application::setBackground(const char* backgroundPath) {
     backgroundTexture.loadFromFile(backgroundPath);
 
     background = sf::Sprite (backgroundTexture);
-    background.setScale(window.getSize().x, window.getSize().y);
-    //spite.scale(window.getSize().x / spite.getLocalBounds().width, window.getSize().y / spite.getLocalBounds().height);
+    //background.setScale(window.getSize().x, window.getSize().y);
+    background.scale(window.getSize().x / background.getLocalBounds().width, window.getSize().y / background.getLocalBounds().height);
 }
 
 void application::newButton(const Button& newButton) {
