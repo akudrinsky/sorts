@@ -12,7 +12,8 @@ void MakeApp() {
             sf::Color(235, 100, 235, 100),
             sf::Color(100, 235, 100, 100),
             "Quit",
-            sf::Vector2f(10, 10)
+            sf::Vector2f(100, 100), 
+            sf::Vector2f(200, 200)
         )
     );
     
@@ -55,6 +56,7 @@ void application::eventLoop() {
         window.clear();
         window.draw(background);
         for (auto button : buttons) {
+            LOGS("INFO >>> drawing button %p\n", &button)
             window.draw(button);
         }
         window.display();

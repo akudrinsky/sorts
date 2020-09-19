@@ -2,13 +2,15 @@
 
 #include <SFML/Graphics.hpp>
 #include <functional>
+#include "usefulDefines.hpp"
 
 class Button : public sf::Drawable {
 public:
     Button(const sf::Color& notClickedColor, 
             const sf::Color& ClickedColor, 
             const sf::String& text, 
-            const sf::Vector2f& location);
+            const sf::Vector2f& location, 
+            const sf::Vector2f& size);
 
     //~Button();
     bool isInside(const sf::Vector2f& location);
@@ -18,11 +20,10 @@ public:
 private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-    // DO NOT use it - really heavy. Better to write basic class functor and inherit from it.
-    std::function<void()> action; // TODO: write mine.
+    void (*action)();
 
-    sf::Sprite Clicked;
-    sf::Sprite notClicked;
+    sf::RectangleShape Clicked;
+    sf::RectangleShape notClicked;
 
     sf::String info;
 

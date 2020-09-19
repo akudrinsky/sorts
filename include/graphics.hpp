@@ -27,7 +27,6 @@ private:
     sf::Sprite background;
     std::vector<Button> buttons;
 
-
     bool lostFocus;
 
     void checkClick(int x_coord, int y_coord);
