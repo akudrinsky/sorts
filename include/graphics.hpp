@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "button.hpp"
+#include "graph.hpp"
 #include "usefulDefines.hpp"
 
 #include <vector>
@@ -16,6 +17,12 @@ public:
 
     void eventLoop();
 
+    void newButton(Button&& newButton);
+    void setBackground(const char* backgroundPath);
+    void newElement(Graph&& elem);
+
+    void Quit();
+
     //void shutDown();
 
     //~application();
@@ -26,14 +33,11 @@ private:
     sf::Texture backgroundTexture;
     sf::Sprite background;
     std::vector<Button> buttons;
+    std::vector<Graph> elems;
 
     bool lostFocus;
 
     void checkClick(int x_coord, int y_coord);
-
-    void setBackground(const char* backgroundPath);
-    void setPlots();
-    void newButton(const Button& newButton);
 
     friend void MakeApp();
 };

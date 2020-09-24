@@ -1,0 +1,5 @@
+INFO >>> there was a click at (566, 842)
+INFO >>> checkInside
+INFO >>> button clicked
+INFO >>> 0x7ffee3db0ce0 button was clicked on
+Quitting app

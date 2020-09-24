@@ -1,4 +1,5 @@
 #include "../include/graphics.hpp"
+#include "../include/statsInt.hpp"
 
 void fun() {
     printf("Quit\n");
@@ -9,11 +10,28 @@ void MakeApp() {
     
     app.newButton(
         Button(
-            sf::Color(235, 100, 235, 100),
-            sf::Color(100, 235, 100, 100),
+            sf::Color(235, 100, 235, 255),
+            sf::Color(235, 100, 235, 255),
             "Quit",
+            "/Library/Fonts/Arial.ttf",
+            sf::Vector2f(500, 800), 
             sf::Vector2f(100, 100), 
-            sf::Vector2f(200, 200)
+            [&app]() mutable {
+                printf("Quitting app\n");
+                app.Quit();
+            }
+        )
+    );
+
+    Stats bubbleData("./data/BubbleSort.txt");
+    sf::RectangleShape graphBackground(sf::Vector2f(600, 600));
+    graphBackground.setFillColor(sf::Color::Black);
+    app.newElement(
+        Graph(
+            graphBackground,
+            bubbleData.sizes,
+            bubbleData.compares,
+            sf::Vector2f(200, 100)
         )
     );
     
@@ -23,6 +41,10 @@ void MakeApp() {
 application::application(const char* backgroundPath): window(sf::VideoMode::getDesktopMode(), "Sort algorithms"), 
                                 lostFocus(false) {
     setBackground(backgroundPath);
+}
+
+void application::Quit() {
+    window.close();
 }
 
 void application::eventLoop() {
@@ -40,11 +62,12 @@ void application::eventLoop() {
                 }
                 case sf::Event::GainedFocus: {
                     if (lostFocus) {
-                        printf("Focus was lost\n");
+                        LOGS("INFO >>> Focus was lost\n");
                     }
                     break;
                 }
                 case sf::Event::MouseButtonPressed: {
+                    LOGS("INFO >>> there was a click at (%d, %d)\n", event.mouseButton.x, event.mouseButton.y)
                     checkClick(event.mouseButton.x, event.mouseButton.y);
                     break;
                 }
@@ -55,9 +78,14 @@ void application::eventLoop() {
 
         window.clear();
         window.draw(background);
+        
         for (auto button : buttons) {
-            LOGS("INFO >>> drawing button %p\n", &button)
+            //LOGS("INFO >>> drawing button\n")
             window.draw(button);
+        }
+
+        for (auto elem : elems) {
+            window.draw(elem);
         }
         window.display();
     }
@@ -71,16 +99,21 @@ void application::setBackground(const char* backgroundPath) {
     background.scale(window.getSize().x / background.getLocalBounds().width, window.getSize().y / background.getLocalBounds().height);
 }
 
-void application::newButton(const Button& newButton) {
-    buttons.push_back(newButton);
+void application::newButton(Button&& newButton) {
+    //newButton.setApp(*this);
+    buttons.push_back(std::forward<Button&&>(newButton));
+}
+
+void application::newElement(Graph&& elem) {
+    elems.push_back(elem);
 }
 
 void application::checkClick(int x_coord, int y_coord) {
     for (auto button : buttons) {
         if (button.isInside(sf::Vector2f(x_coord, y_coord))) {
+            LOGS("INFO >>> button clicked\n")
             button.reColor();
             button.performAction();
-            LOGS("INFO >>> button clicked: %s\n", button.info())
             break; // NO button beneath another button.
         }
     }

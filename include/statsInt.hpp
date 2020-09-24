@@ -1,10 +1,22 @@
 #pragma once
 
+#include <vector>
+#include "usefulDefines.hpp"
+
 class StatsInt;
 
 namespace std {
     void swap(StatsInt& first, StatsInt& second);
 }
+struct Stats {
+    Stats(const char* filename);
+
+    NON_COPYBLE(Stats);
+
+    std::vector<int> sizes;
+    std::vector<int> swaps;
+    std::vector<int> compares;
+};
 
 class StatsInt {
 public:

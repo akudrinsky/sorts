@@ -20,3 +20,6 @@ experiment: experiments/experiments.cpp
 
 genArrays: data/gen-sort-tests.py
 	./data/gen-sort-tests.py
+
+show: executable
+	./executable show >./data/logs.txt

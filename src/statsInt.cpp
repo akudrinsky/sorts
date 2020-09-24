@@ -1,10 +1,25 @@
 #include "../include/statsInt.hpp"
+#include "../include/usefulDefines.hpp"
 #include <cstdio>
 
 #define GENERATE_COMPARE_OPERATOR_STATSINT(op)\
 bool StatsInt::operator op (const StatsInt& other) {\
     ++compareNum;\
     return number op other.number;\
+}
+
+Stats::Stats(const char* filename) {
+    FILE* file = fopen(filename, "r");
+    int nSize = 0, nSwaps = 0, nCompares = 0;
+
+    while (EOF != fscanf(file, "%d: %d %d\n", &nSize, &nSwaps, &nCompares)) {
+        sizes.push_back(nSize);
+        swaps.push_back(nSwaps);
+        compares.push_back(nCompares);
+        //LOGS("read %d: %d %d\n", nSize, nSwaps, nCompares)
+    }
+
+    fclose(file);
 }
 
 unsigned long StatsInt::compareNum = 0;
