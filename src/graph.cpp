@@ -50,12 +50,12 @@ void Graph::draw(sf::RenderTarget& target, sf::RenderStates states) const {
         sf::VertexArray line (sf::Lines, 2);
         
         line[0].position = sf::Vector2f(
-            place.left + xCoord[i], 
-            place.top + yCoord[i]
+            place.left + ((double) xCoord[i]) / (xMax - xMin) * place.width, 
+            place.top + place.height - ((double) yCoord[i]) / (yMax - yMin) * place.height
         );
         line[1].position = sf::Vector2f(
-            place.left + xCoord[i - 1], 
-            place.top + yCoord[i - 1]
+            place.left + ((double) xCoord[i - 1]) / (xMax - xMin) * place.width, 
+            place.top + place.height - ((double) yCoord[i - 1]) / (yMax - yMin) * place.height
         );
         
         line[0].color = sf::Color::Black;

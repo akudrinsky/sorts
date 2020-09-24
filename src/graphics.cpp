@@ -25,7 +25,7 @@ void MakeApp() {
 
     Stats bubbleData("./data/BubbleSort.txt");
     sf::RectangleShape graphBackground(sf::Vector2f(600, 600));
-    graphBackground.setFillColor(sf::Color::Black);
+    graphBackground.setFillColor(sf::Color::White);
     app.newElement(
         Graph(
             graphBackground,
