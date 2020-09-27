@@ -16,7 +16,7 @@ Stats::Stats(const char* filename) {
         sizes.push_back(nSize);
         swaps.push_back(nSwaps);
         compares.push_back(nCompares);
-        //LOGS("read %d: %d %d\n", nSize, nSwaps, nCompares)
+        LOGS("read %d: %d %d\n", nSize, nSwaps, nCompares)
     }
 
     fclose(file);

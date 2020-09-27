@@ -19,7 +19,9 @@ public:
 
     void newButton(Button&& newButton);
     void setBackground(const char* backgroundPath);
-    void newElement(Graph&& elem);
+    void newElement(const Graph& elem);
+
+    Graph& searchElement(int index);
 
     void Quit();
 

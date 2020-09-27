@@ -35,15 +35,19 @@ Button::Button(const sf::Color& notClickedColor,
         LOGS("ERROR >>> no font %s\n", fontName)
     }
 
-    info.setFont(font);
-    info.setString(text);
-    info.setCharacterSize(16); // TODO - more flexibility.
-    info.setColor(sf::Color::Black);
+    info = sf::Text(text, font, 40);
+    //info.setCharacterSize(40); // TODO - more flexibility.
+    info.setColor(sf::Color::Red);
 
+    info.setPosition(sf::Vector2f{10, 10});
+
+    /*
     const sf::FloatRect bounds(info.getLocalBounds());
     const sf::Vector2f box(size);
-    info.setOrigin((bounds.width - box.x) / 2 + bounds.left, (bounds.height - box.y) / 2 + bounds.top);
-
+    info.setOrigin(bounds.width / 2.0f + bounds.left, 
+                    bounds.height / 2.0f + bounds.top);
+    info.setPosition(location);
+    */
     //notClicked.setScale(100, 100);
     // TODO: resize
 }
@@ -68,6 +72,7 @@ void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     else {
         target.draw(notClicked, states);
     }
+    
     target.draw(info, states);
 }
 
