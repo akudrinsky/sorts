@@ -4,8 +4,11 @@
 #include <functional>
 #include "usefulDefines.hpp"
 
+
+// Implements button interface for application.
 class Button : public sf::Drawable {
 public:
+    // Basic constructor. TODO: make it more flexible
     Button(const sf::Color& notClickedColor, 
             const sf::Color& ClickedColor, 
             const char* text, 
@@ -15,8 +18,14 @@ public:
             const std::function<void(void)>& action);
 
     //~Button();
+
+    // Checks if click was inside the button
     bool isInside(const sf::Vector2f& location);
+
+    // Recolors button. TODO: make it work
     void reColor();
+    
+    // Performs action, which was associated with the button.
     void performAction();
 
 private:

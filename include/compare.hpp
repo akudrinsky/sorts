@@ -7,10 +7,19 @@
 #include "vector"
 #include "unordered_map"
 
+/*
+Generates statistics for swaps and compares for all emplemented sorting algorithms
+*/
 void GenStats();
 
+/*
+Compares 
+*/
 class comparator {
 public:
+    // Constructor.
+    // testDataName - name of a test data file (with raw data)
+    // resultDataName - name of a result data with ready statistics
     comparator(const char* testDataName, const char* resultDataName, void (*algorithm)(StatsInt* data, int size));
 
     NON_COPYBLE(comparator)

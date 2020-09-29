@@ -8,6 +8,8 @@ class StatsInt;
 namespace std {
     void swap(StatsInt& first, StatsInt& second);
 }
+
+// contains all stats from sorting
 struct Stats {
     Stats(const char* filename);
 
@@ -18,6 +20,7 @@ struct Stats {
     std::vector<int> compares;
 };
 
+// Class, that can count swaps and compares between its elements
 class StatsInt {
 public:
     StatsInt();

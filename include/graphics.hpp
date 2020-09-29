@@ -7,22 +7,35 @@
 
 #include <vector>
 
+// Creates application for a program
 void MakeApp();
 
+// Basic interface for graphics, consists of buttons and graphs. TODO: more
+// TODO: array of pointers to sf::Drawable
 class application {
 public:
+    // backgroundPath - path to background image.
     application(const char* backgroundPath);
     application() = delete;
     NON_COPYBLE(application)
 
+    // checks all events and acts correspondly
     void eventLoop();
 
+    // adds button to this application
+    // NOTE: move-semantics only, because only one application for program in assumed
     void newButton(Button&& newButton);
+
+    // sets background
     void setBackground(const char* backgroundPath);
+
+    // adds new element for this app.
     void newElement(const Graph& elem);
 
+    // searches for drawable element in this app.
     Graph& searchElement(int index);
 
+    // quits from application.
     void Quit();
 
     //void shutDown();

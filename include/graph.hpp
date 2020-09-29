@@ -6,6 +6,9 @@
 #include <vector>
 #include <limits>
 
+
+// Implements graph interface for application.
+// Is able to contain several functions inside one graph.
 class Graph : public sf::Drawable {
 public:
     Graph(const sf::RectangleShape& background, 

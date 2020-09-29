@@ -159,6 +159,8 @@ void application::eventLoop() {
 
         window.clear();
         window.draw(background);
+        
+
 
 /*
         sf::Font font;
@@ -166,11 +168,14 @@ void application::eventLoop() {
             printf("ERROR >>> no font %s\n", "/Library/Fonts/Arial.ttf");
         }
 
-        sf::Text info("asd\n", font);
+        sf::Text info("DEBUG", font);
         info.setPosition(sf::Vector2f{10, 10});
         info.setColor(sf::Color::Red);
         window.draw(info);
 */
+
+
+
         for (auto button : buttons) {
             //LOGS("INFO >>> drawing button\n")
             window.draw(button);

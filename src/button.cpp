@@ -35,11 +35,10 @@ Button::Button(const sf::Color& notClickedColor,
         LOGS("ERROR >>> no font %s\n", fontName)
     }
 
-    info = sf::Text(text, font, 40);
-    //info.setCharacterSize(40); // TODO - more flexibility.
+    info = sf::Text(text, font);
     info.setColor(sf::Color::Red);
 
-    info.setPosition(sf::Vector2f{10, 10});
+    info.setPosition(sf::Vector2f{30, 5});
 
     /*
     const sf::FloatRect bounds(info.getLocalBounds());
