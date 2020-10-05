@@ -16,14 +16,16 @@ void MakeApp() {
     graphBackground.setFillColor(sf::Color::White);
 
     Graph compares(graphBackground, &bubbleData.sizes, &bubbleData.compares);
+    compares.alwaysResize(true);
     compares.addFunc(&qsortData.compares, sf::Color::Red);
 
     LOGS("INFO >>> new element of app - compares graph\n")
     app.newElement(compares);
 
-    graphBackground.setPosition(sf::Vector2f(1200, 200));
+    graphBackground.setPosition(sf::Vector2f(1400, 200));
 
     Graph swaps(graphBackground, &bubbleData.sizes, &bubbleData.swaps);
+    swaps.alwaysResize(true);
     swaps.addFunc(&qsortData.swaps, sf::Color::Red);
 
     LOGS("INFO >>> new element of app - swaps graph\n")

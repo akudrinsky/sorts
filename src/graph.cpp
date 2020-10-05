@@ -5,7 +5,9 @@ Graph::Graph(const sf::RectangleShape& background,
                 std::vector<int>* initYCoord) 
                 :
                 background(background), 
-                xCoord(xCoord) {
+                xCoord(xCoord), 
+                resizeAlways(false),
+                font(loadFromFile("/Library/Fonts/Arial.ttf")) {
 
     ChangeBoundsX();
     addFunc(initYCoord);
@@ -34,8 +36,14 @@ void Graph::ChangeBoundsX() {
 
 void Graph::ChangeBoundsY() {
     for (int index = 0; index < yCoord.size(); ++index) {
-        changeBoundsByNew(index);
+        if (!resizeAlways or resizeAlways and yCoord[index].notForgotten) {
+            changeBoundsByNew(index);
+        }
     }
+}
+
+void Graph::alwaysResize(bool mode) {
+    resizeAlways = mode;
 }
 
 void Graph::changeBoundsByNew(int index) {
@@ -54,15 +62,28 @@ void Graph::changeBoundsByNew(int index) {
 }
 
 void Graph::enableFunc(int index, bool enable) {
+    LOGS("!!! before: %lf, %lf\n", yMax, yMin);
     if (index >= yCoord.size()) {
         LOGS("ERROR >>> out of bounds\n")
+        throw std::out_of_range("enableFunc fail");
     }
+
     yCoord[index].notForgotten = enable;
+
+    if (resizeAlways) {
+        yMax = std::numeric_limits<double>::min(); 
+        yMin = std::numeric_limits<double>::max();
+        ChangeBoundsY();
+    }
+
+    // TODO manage inefficiency (every functions should store its bounds)
+    LOGS("!!! after: %lf, %lf\n", yMax, yMin);
 }
 
 bool Graph::isEnabled(int index) {
     if (index >= yCoord.size()) {
         LOGS("ERROR >>> out of bounds\n")
+        throw std::out_of_range("isEnabled fail");
     }
     return yCoord[index].notForgotten;
 }
@@ -95,9 +116,43 @@ sf::VertexArray Graph::drawOneLine(int nGraph, int nPair) const {
 
     return line;
 }
+
+void Graph::drawBoundsNumbers(sf::RenderTarget& target, sf::RenderStates states) const {
+    sf::Vector2f backgroundPlace = background.getPosition();
+    sf::Vector2f backgroundSize = background.getSize();
+
+    int justNear = 20;
+
+    sf::Vector2f yMinLoc(backgroundPlace.x - justNear, backgroundPlace.y + backgroundSize.y);
+    sf::Vector2f xMinLoc(backgroundPlace.x, backgroundPlace.y + backgroundSize.y + justNear);
+    sf::Vector2f xMaxLoc(backgroundPlace.x + backgroundSize.x, backgroundPlace.y + backgroundSize.y + justNear);
+    sf::Vector2f yMaxLoc(backgroundPlace.x - justNear, backgroundPlace.y);
+
+    drawNum(xMin, xMinLoc, target, states);
+    drawNum(xMax, xMaxLoc, target, states);
+    drawNum(yMin, yMinLoc, target, states);
+    drawNum(yMax, yMaxLoc, target, states);
+}
+
+void Graph::drawNum(double num, const sf::Vector2f& location, 
+                sf::RenderTarget& target, sf::RenderStates states) const {
+    
+    sf::Text info(std::to_string(num), font);
+
+    info.setColor(sf::Color::Black);
+
+    const sf::FloatRect bounds(info.getLocalBounds());
+    info.setOrigin(bounds.width / 2.0f + bounds.left, 
+                    bounds.height / 2.0f + bounds.top);
+    info.setPosition(location);
+
+    target.draw(info, states);
+}
     
 void Graph::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(background);
+
+    drawBoundsNumbers(target, states);
 
     if (activePointsNum == 1) {
         return;

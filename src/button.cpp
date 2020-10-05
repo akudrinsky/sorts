@@ -13,14 +13,14 @@ namespace {
         }
         return false;
     }
+}
 
-    sf::Font loadFromFile(const char* fontName) {
-        sf::Font font;
-        if (!font.loadFromFile(fontName)) {
-            LOGS("ERROR >>> no font %s\n", fontName)
-        }
-        return font;
+sf::Font loadFromFile(const char* fontName) {
+    sf::Font font;
+    if (!font.loadFromFile(fontName)) {
+        LOGS("ERROR >>> no font %s\n", fontName)
     }
+    return font;
 }
 
 Button::Button(const sf::Color& notClickedColor, 
