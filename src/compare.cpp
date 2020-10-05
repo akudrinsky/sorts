@@ -7,15 +7,6 @@
 #include "cstring"
 #include "vector"
 
-namespace settings {
-    const int maxLength = 1000;
-
-    // Relative to executable
-    const char* testData = "data/tests.txt";
-    const char* bubbleData = "data/BubbleSort.txt";
-    const char* quickData = "data/QSort.txt";
-};
-
 void GenStats() {
     LOGS("INFO >>> Bubble sort\n")
     comparator bubble (settings::testData, settings::bubbleData, BubbleSort);

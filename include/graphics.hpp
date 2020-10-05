@@ -38,10 +38,6 @@ public:
     // quits from application.
     void Quit();
 
-    //void shutDown();
-
-    //~application();
-
 private:
     sf::RenderWindow window;
 

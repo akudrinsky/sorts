@@ -2,7 +2,8 @@
 
 Graph::Graph(const sf::RectangleShape& background, 
                 std::vector<int>* xCoord, 
-                std::vector<int>* initYCoord) :
+                std::vector<int>* initYCoord) 
+                :
                 background(background), 
                 xCoord(xCoord) {
 

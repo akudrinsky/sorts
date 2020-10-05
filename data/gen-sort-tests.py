@@ -21,7 +21,9 @@ def makeTest(file, testSize):
     """
     Writes test array of a given size to a file in a form "length: num_1 num_2 ... num_length"
     """
-    data = [random.randint(Configs["values"]["min"], Configs["values"]["max"]) for i in range(testSize)]
+    data = [random.randint(Configs["values"]["min"], Configs["values"]["max"]) 
+            for i in range(testSize)]
+            
     file.write(str(testSize) + ": ")
     file.write(" ".join(str(number) for number in data))
     file.write("\n")

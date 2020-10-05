@@ -1,0 +1,166 @@
+read 955: 456489 169105
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 905: 409964 154896
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 855: 365939 139188
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 805: 324414 125301
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 755: 285389 112783
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 705: 248864 98696
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 655: 214839 86643
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 605: 183314 75574
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 555: 154289 64680
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 505: 127764 53883
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 455: 103739 44445
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 405: 82214 35531
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 355: 63189 27958
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 305: 46664 21258
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 255: 32639 14910
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 205: 21114 9887
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 155: 12089 5633
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 105: 5564 2631
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 55: 1539 761
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 5: 14 4
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 955: 12317 2547
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 905: 11719 2394
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 855: 10787 2246
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 805: 10014 2094
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 755: 9429 1943
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 705: 8811 1795
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 655: 8096 1648
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 605: 7430 1495
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 555: 6504 1368
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 505: 6100 1214
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 455: 5346 1076
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 405: 4560 948
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 355: 4015 813
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 305: 3255 684
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 255: 2684 554
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 205: 2110 425
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 155: 1447 309
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 105: 927 194
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 55: 420 92
+		in file src/statsInt.cpp, line 19, function Stats
+
+read 5: 17 5
+		in file src/statsInt.cpp, line 19, function Stats
+
+INFO >>> new 0'th function of graph 0x7ffeef157630!
+		in file src/graph.cpp, line 17, function addFunc
+
+INFO >>> new 1'th function of graph 0x7ffeef157630!
+		in file src/graph.cpp, line 17, function addFunc
+
+INFO >>> new element of app - compares graph
+		in file src/graphics.cpp, line 21, function MakeApp
+
+INFO >>> new 0'th function of graph 0x7ffeef157478!
+		in file src/graph.cpp, line 17, function addFunc
+
+INFO >>> new 1'th function of graph 0x7ffeef157478!
+		in file src/graph.cpp, line 17, function addFunc
+
+INFO >>> new element of app - swaps graph
+		in file src/graphics.cpp, line 29, function MakeApp
+
+INFO >>> new button for quit
+		in file src/graphics.cpp, line 32, function MakeApp
+
+INFO >>> new button for bubble graph
+		in file src/graphics.cpp, line 49, function MakeApp
+
+INFO >>> new button for qsort graph
+		in file src/graphics.cpp, line 65, function MakeApp
+
+INFO >>> new button for bubble swaps graph
+		in file src/graphics.cpp, line 81, function MakeApp
+
+INFO >>> new button for qsort swaps graph
+		in file src/graphics.cpp, line 97, function MakeApp
+
+INFO >>> there was a click at (550, 852)
+		in file src/graphics.cpp, line 152, function eventLoop
+
+INFO >>> checkInside
+		in file src/button.cpp, line 6, function checkInside
+
+INFO >>> button clicked
+		in file src/graphics.cpp, line 212, function checkClick
+
+INFO >>> 0x7ffeef156570 button was clicked on
+		in file src/button.cpp, line 92, function performAction
+
+Quitting app

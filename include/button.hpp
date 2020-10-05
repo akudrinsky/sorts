@@ -3,15 +3,15 @@
 #include <SFML/Graphics.hpp>
 #include <functional>
 #include "usefulDefines.hpp"
-
+#include <string>
 
 // Implements button interface for application.
 class Button : public sf::Drawable {
 public:
-    // Basic constructor. TODO: make it more flexible
+    // Basic constructor. TODO: make it more flexible.
     Button(const sf::Color& notClickedColor, 
             const sf::Color& ClickedColor, 
-            const char* text, 
+            const sf::String& text, 
             const char* fontName,
             const sf::Vector2f& location, 
             const sf::Vector2f& size, 
@@ -36,8 +36,9 @@ private:
     sf::RectangleShape Clicked;
     sf::RectangleShape notClicked;
 
+    sf::String text;
     sf::Font font;
-    sf::Text info;
+    //sf::Text info;
 
     bool isClicked;
 };

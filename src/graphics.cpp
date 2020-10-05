@@ -30,11 +30,12 @@ void MakeApp() {
     app.newElement(swaps);
 
     LOGS("INFO >>> new button for quit\n")
+    char quit[10] = "Quit";
     app.newButton(
         Button(
             sf::Color(235, 100, 235, 205),
             sf::Color(235, 100, 235, 205),
-            "Quit",
+            quit,
             "/Library/Fonts/Arial.ttf",
             sf::Vector2f(500, 800), 
             sf::Vector2f(100, 100), 
