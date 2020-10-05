@@ -56,7 +56,7 @@ void MakeApp() {
             sf::Vector2f(700, 800), 
             sf::Vector2f(100, 100), 
             [&app]() mutable {
-                Graph& graph = app.searchElement(0);
+                Graph& graph = dynamic_cast<Graph&>(app.searchElement(0));
                 graph.changeEnable(0);
             }
         )
@@ -72,7 +72,7 @@ void MakeApp() {
             sf::Vector2f(900, 800), 
             sf::Vector2f(100, 100), 
             [&app]() mutable {
-                Graph& graph = app.searchElement(0);
+                Graph& graph = dynamic_cast<Graph&>(app.searchElement(0));
                 graph.changeEnable(1);
             }
         )
@@ -88,7 +88,7 @@ void MakeApp() {
             sf::Vector2f(1200, 800), 
             sf::Vector2f(100, 100), 
             [&app]() mutable {
-                Graph& graph = app.searchElement(1);
+                Graph& graph = dynamic_cast<Graph&>(app.searchElement(1));
                 graph.changeEnable(0);
             }
         )
@@ -104,7 +104,7 @@ void MakeApp() {
             sf::Vector2f(1400, 800), 
             sf::Vector2f(100, 100), 
             [&app]() mutable {
-                Graph& graph = app.searchElement(1);
+                Graph& graph = dynamic_cast<Graph&>(app.searchElement(1));
                 graph.changeEnable(1);
             }
         )
@@ -122,11 +122,11 @@ void application::Quit() {
     window.close();
 }
 
-Graph& application::searchElement(int index) {
+sf::Drawable& application::searchElement(int index) {
     if (index >= elems.size()) {
         LOGS("ERROR >>> out of bounds (index is %d, size is only %d)\n", index, elems.size())
     }
-    return elems[index];
+    return *elems[index];
 }
 
 void application::eventLoop() {
@@ -183,7 +183,7 @@ void application::eventLoop() {
         }
 
         for (auto elem : elems) {
-            window.draw(elem);
+            window.draw(*elem);
         }
         window.display();
     }
@@ -202,8 +202,8 @@ void application::newButton(Button&& newButton) {
     buttons.push_back(std::forward<Button&&>(newButton));
 }
 
-void application::newElement(const Graph& elem) {
-    elems.push_back(elem);
+void application::newElement(sf::Drawable& elem) {
+    elems.push_back(&elem);
 }
 
 void application::checkClick(int x_coord, int y_coord) {

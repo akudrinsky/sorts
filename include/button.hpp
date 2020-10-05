@@ -24,6 +24,9 @@ public:
 
     // Recolors button. TODO: make it work
     void reColor();
+
+    // Changes text color
+    void colorText(const sf::Color& newColor);
     
     // Performs action, which was associated with the button.
     void performAction();
@@ -36,9 +39,11 @@ private:
     sf::RectangleShape Clicked;
     sf::RectangleShape notClicked;
 
+    sf::Color textColor;
+
     sf::String text;
     sf::Font font;
-    //sf::Text info;
+    sf::Text info;
 
     bool isClicked;
 };

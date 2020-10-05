@@ -33,7 +33,8 @@ Button::Button(const sf::Color& notClickedColor,
                 :
                 action(action),
                 font(loadFromFile(fontName)),
-                text(text) {
+                text(text),
+                textColor(sf::Color::White) {
 
     Clicked.setFillColor(ClickedColor);
     notClicked.setFillColor(notClickedColor);
@@ -43,20 +44,6 @@ Button::Button(const sf::Color& notClickedColor,
 
     Clicked.setSize(size);
     notClicked.setSize(size);
-
-    /*
-    info.setColor(sf::Color::Red);
-    info.setPosition(sf::Vector2f{30, 5});
-    */
-
-    /*
-    const sf::FloatRect bounds(info.getLocalBounds());
-    const sf::Vector2f box(size);
-    info.setOrigin(bounds.width / 2.0f + bounds.left, 
-                    bounds.height / 2.0f + bounds.top);
-    info.setPosition(location);
-    */
-    //notClicked.setScale(100, 100);
     // TODO: resize
 }
 
@@ -83,18 +70,23 @@ void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     
     sf::Text info(text, font);
 
-    info.setColor(sf::Color::White);
+    info.setColor(textColor);
 
     auto size = Clicked.getSize();
     auto location = Clicked.getPosition();
+    location.x += size.x / 2.0f;
+    location.y += size.y / 2.0f;
 
     const sf::FloatRect bounds(info.getLocalBounds());
-    const sf::Vector2f box(size);
     info.setOrigin(bounds.width / 2.0f + bounds.left, 
                     bounds.height / 2.0f + bounds.top);
     info.setPosition(location);
 
     target.draw(info, states);
+}
+
+void Button::colorText(const sf::Color& newColor) {
+    textColor = newColor;
 }
 
 void Button::performAction() {

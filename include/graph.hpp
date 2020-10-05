@@ -6,7 +6,6 @@
 #include <vector>
 #include <limits>
 
-
 // Implements graph interface for application.
 // Is able to contain several functions inside one graph.
 class Graph : public sf::Drawable {
@@ -15,6 +14,7 @@ public:
         std::vector<int>* xCoord, 
         std::vector<int>* yCoord);
 
+    // adds new function to this Graph
     void addFunc(std::vector<int>* newYValues, sf::Color color = sf::Color::Black);
 
     void enableFunc(int index, bool enable);

@@ -9,7 +9,7 @@ executable: $(OBJ_FILES)
 	g++ $(LDFLAGS) -o $@ $^ 
 
 clean:
-	rm bin/*.o
+	rm bin/*.o || rm executable
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	g++ $(CPPFLAGS) -c -o $@ $<

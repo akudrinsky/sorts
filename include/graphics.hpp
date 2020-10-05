@@ -30,10 +30,10 @@ public:
     void setBackground(const char* backgroundPath);
 
     // adds new element for this app.
-    void newElement(const Graph& elem);
+    void newElement(sf::Drawable& elem);
 
     // searches for drawable element in this app.
-    Graph& searchElement(int index);
+    sf::Drawable& searchElement(int index);
 
     // quits from application.
     void Quit();
@@ -44,7 +44,7 @@ private:
     sf::Texture backgroundTexture;
     sf::Sprite background;
     std::vector<Button> buttons;
-    std::vector<Graph> elems;
+    std::vector<sf::Drawable*> elems;
 
     bool lostFocus;
 
