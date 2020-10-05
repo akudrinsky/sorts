@@ -12,11 +12,12 @@ void MakeApp() {
     Stats qsortData("./data/QSort.txt");
 
     sf::RectangleShape graphBackground(sf::Vector2f(1000, 600));
-    graphBackground.setPosition(sf::Vector2f(100, 200));
+    graphBackground.setPosition(sf::Vector2f(150, 200));
     graphBackground.setFillColor(sf::Color::White);
 
     Graph compares(graphBackground, &bubbleData.sizes, &bubbleData.compares);
     compares.alwaysResize(true);
+    compares.colorText(sf::Color::Magenta);
     compares.addFunc(&qsortData.compares, sf::Color::Red);
 
     LOGS("INFO >>> new element of app - compares graph\n")
@@ -26,20 +27,20 @@ void MakeApp() {
 
     Graph swaps(graphBackground, &bubbleData.sizes, &bubbleData.swaps);
     swaps.alwaysResize(true);
+    swaps.colorText(sf::Color::Magenta);
     swaps.addFunc(&qsortData.swaps, sf::Color::Red);
 
     LOGS("INFO >>> new element of app - swaps graph\n")
     app.newElement(swaps);
 
     LOGS("INFO >>> new button for quit\n")
-    char quit[10] = "Quit";
     app.newButton(
         Button(
             sf::Color(235, 100, 235, 205),
             sf::Color(235, 100, 235, 205),
-            quit,
+            "Quit",
             "/Library/Fonts/Arial.ttf",
-            sf::Vector2f(500, 800), 
+            sf::Vector2f(50, 50), 
             sf::Vector2f(100, 100), 
             [&app]() mutable {
                 printf("Quitting app\n");
@@ -55,7 +56,7 @@ void MakeApp() {
             sf::Color::Black,
             "Bubble",
             "/Library/Fonts/Arial.ttf",
-            sf::Vector2f(700, 800), 
+            sf::Vector2f(400, 1000), 
             sf::Vector2f(100, 100), 
             [&app]() mutable {
                 Graph& graph = dynamic_cast<Graph&>(app.searchElement(0));
@@ -71,7 +72,7 @@ void MakeApp() {
             sf::Color::Red,
             "Quick",
             "/Library/Fonts/Arial.ttf",
-            sf::Vector2f(900, 800), 
+            sf::Vector2f(800, 1000), 
             sf::Vector2f(100, 100), 
             [&app]() mutable {
                 Graph& graph = dynamic_cast<Graph&>(app.searchElement(0));
@@ -87,7 +88,7 @@ void MakeApp() {
             sf::Color::Black,
             "Bubble",
             "/Library/Fonts/Arial.ttf",
-            sf::Vector2f(1200, 800), 
+            sf::Vector2f(1600, 1000), 
             sf::Vector2f(100, 100), 
             [&app]() mutable {
                 Graph& graph = dynamic_cast<Graph&>(app.searchElement(1));
@@ -103,7 +104,7 @@ void MakeApp() {
             sf::Color::Red,
             "Quick",
             "/Library/Fonts/Arial.ttf",
-            sf::Vector2f(1400, 800), 
+            sf::Vector2f(2000, 1000), 
             sf::Vector2f(100, 100), 
             [&app]() mutable {
                 Graph& graph = dynamic_cast<Graph&>(app.searchElement(1));

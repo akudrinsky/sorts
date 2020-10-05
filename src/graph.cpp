@@ -7,7 +7,8 @@ Graph::Graph(const sf::RectangleShape& background,
                 background(background), 
                 xCoord(xCoord), 
                 resizeAlways(false),
-                font(loadFromFile("/Library/Fonts/Arial.ttf")) {
+                font(loadFromFile("/Library/Fonts/Arial.ttf")),
+                textColor(sf::Color::Black) {
 
     ChangeBoundsX();
     addFunc(initYCoord);
@@ -42,6 +43,10 @@ void Graph::ChangeBoundsY() {
     }
 }
 
+void Graph::colorText(const sf::Color& newColor) {
+    textColor = newColor;
+}
+
 void Graph::alwaysResize(bool mode) {
     resizeAlways = mode;
 }
@@ -62,7 +67,6 @@ void Graph::changeBoundsByNew(int index) {
 }
 
 void Graph::enableFunc(int index, bool enable) {
-    LOGS("!!! before: %lf, %lf\n", yMax, yMin);
     if (index >= yCoord.size()) {
         LOGS("ERROR >>> out of bounds\n")
         throw std::out_of_range("enableFunc fail");
@@ -77,7 +81,6 @@ void Graph::enableFunc(int index, bool enable) {
     }
 
     // TODO manage inefficiency (every functions should store its bounds)
-    LOGS("!!! after: %lf, %lf\n", yMax, yMin);
 }
 
 bool Graph::isEnabled(int index) {
@@ -137,9 +140,8 @@ void Graph::drawBoundsNumbers(sf::RenderTarget& target, sf::RenderStates states)
 void Graph::drawNum(double num, const sf::Vector2f& location, 
                 sf::RenderTarget& target, sf::RenderStates states) const {
     
-    sf::Text info(std::to_string(num), font);
-
-    info.setColor(sf::Color::Black);
+    sf::Text info(std::to_string(num), font, 20);
+    info.setColor(textColor);
 
     const sf::FloatRect bounds(info.getLocalBounds());
     info.setOrigin(bounds.width / 2.0f + bounds.left, 

@@ -29,6 +29,8 @@ public:
     // If out of bounds, throws an exception.
     bool isEnabled(int index);
 
+    void colorText(const sf::Color& newColor);
+
     // changes enableness of a given function
     // If out of bounds, throws an exception.
     void changeEnable(int index);
@@ -54,6 +56,7 @@ private:
     std::vector<int>* xCoord;
     std::vector<func> yCoord;
     sf::Font font;
+    sf::Color textColor;
 
     bool resizeAlways;
 
