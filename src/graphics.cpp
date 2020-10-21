@@ -1,10 +1,6 @@
 #include "../include/graphics.hpp"
 #include "../include/statsInt.hpp"
 
-void fun() {
-    printf("Quit\n");
-}
-
 void MakeApp() {
     application app("data/background.jpg");
     
@@ -59,8 +55,13 @@ void MakeApp() {
             sf::Vector2f(400, 1000), 
             sf::Vector2f(100, 100), 
             [&app]() mutable {
-                Graph& graph = dynamic_cast<Graph&>(app.searchElement(0));
-                graph.changeEnable(0);
+                try {
+                    Graph& graph = dynamic_cast<Graph&>(app.searchElement(0));
+                    graph.changeEnable(0);
+                }
+                catch (...) {
+                    printf("ERROR >>> on button click");
+                }
             }
         )
     );
@@ -75,8 +76,13 @@ void MakeApp() {
             sf::Vector2f(800, 1000), 
             sf::Vector2f(100, 100), 
             [&app]() mutable {
-                Graph& graph = dynamic_cast<Graph&>(app.searchElement(0));
-                graph.changeEnable(1);
+                try {
+                    Graph& graph = dynamic_cast<Graph&>(app.searchElement(0));
+                    graph.changeEnable(1);
+                }
+                catch (...) {
+                    printf("ERROR >>> on button click");
+                }
             }
         )
     );
@@ -91,8 +97,13 @@ void MakeApp() {
             sf::Vector2f(1600, 1000), 
             sf::Vector2f(100, 100), 
             [&app]() mutable {
-                Graph& graph = dynamic_cast<Graph&>(app.searchElement(1));
-                graph.changeEnable(0);
+                try {
+                    Graph& graph = dynamic_cast<Graph&>(app.searchElement(1));
+                    graph.changeEnable(0);
+                }
+                catch (...) {
+                    printf("ERROR >>> on button click");
+                }
             }
         )
     );
@@ -107,8 +118,13 @@ void MakeApp() {
             sf::Vector2f(2000, 1000), 
             sf::Vector2f(100, 100), 
             [&app]() mutable {
-                Graph& graph = dynamic_cast<Graph&>(app.searchElement(1));
-                graph.changeEnable(1);
+                try {
+                    Graph& graph = dynamic_cast<Graph&>(app.searchElement(1));
+                    graph.changeEnable(1);
+                }
+                catch (...) {
+                    printf("ERROR >>> on button click");
+                }
             }
         )
     );
@@ -164,22 +180,6 @@ void application::eventLoop() {
         window.clear();
         window.draw(background);
         
-
-
-/*
-        sf::Font font;
-        if (!font.loadFromFile("/Library/Fonts/Arial.ttf")) {
-            printf("ERROR >>> no font %s\n", "/Library/Fonts/Arial.ttf");
-        }
-
-        sf::Text info("DEBUG", font);
-        info.setPosition(sf::Vector2f{10, 10});
-        info.setColor(sf::Color::Red);
-        window.draw(info);
-*/
-
-
-
         for (auto button : buttons) {
             //LOGS("INFO >>> drawing button\n")
             window.draw(button);
@@ -201,7 +201,6 @@ void application::setBackground(const char* backgroundPath) {
 }
 
 void application::newButton(Button&& newButton) {
-    //newButton.setApp(*this);
     buttons.push_back(std::forward<Button&&>(newButton));
 }
 

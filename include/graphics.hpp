@@ -17,6 +17,7 @@ public:
     // backgroundPath - path to background image.
     application(const char* backgroundPath);
     application() = delete;
+    
     NON_COPYBLE(application)
 
     // checks all events and acts correspondly

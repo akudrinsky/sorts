@@ -6,6 +6,7 @@
 #include <string>
 
 // Implements button interface for application.
+// Heavily relies on std::function and lambda - needs to be reimplemented.
 class Button : public sf::Drawable {
 public:
     // Basic constructor. TODO: make it more flexible.
