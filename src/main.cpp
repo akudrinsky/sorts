@@ -1,6 +1,7 @@
 #include "../include/statsInt.hpp"
 #include "../include/compare.hpp"
-#include "../include/graphics.hpp"
+#include "../include/sortsApp.hpp"
+#include "../include/makeApp.hpp"
 
 #include "cstdio"
 #include "cstring"

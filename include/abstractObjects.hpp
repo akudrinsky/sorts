@@ -1,57 +1,69 @@
-#include <unordered_map>
 #include "usefulDefines.hpp"
+#include <type_traits>
+#include <queue>
+#include <initializer_list>
+
+/*
+    ПЛАН:
+    1. Глянуть ncurses | MFC | OpenGL | WTL
+    2. Доделать архитектуру
+    3. Написать SFML-адаптор к ней
+    4. Переписать сортировку
+*/
 
 namespace kudry {
 
-class Drawable;
+template <typename Adaptor>
+class RenderWindow;
 
-class UniqueObject {
+class Event;
+
+template <typename Adaptor>
+class WindowManager {
 public:
-    typedef unsigned int uid_t;
+    virtual bool EmplaceWindow(RenderWindow* newWindow) = 0;
 
-    UniqueObject();
+    Event* GetEvent();
 
-    NON_COPYBLE(UniqueObject)
+    virtual bool SaveTo(std::string filename) = 0;
 
-    static uid_t genUID();
+    virtual bool LoadFrom(std::string filename) = 0;
 
-    virtual uid_t getId() const;
+    virtual void Render() = 0;
 
-private:
-    const uid_t id;
-    static uid_t curFree;
+protected:
+    std::queue<Event*> eventQueue;
 };
 
-class compareUniqueObjects {
+template <typename Adaptor>
+class RenderWindow {
 public:
-    bool operator()(UniqueObject* first, UniqueObject* second);
+    virtual void Draw() = 0;
+
+    virtual void HandleEvent(Event* event) = 0;
+
+protected:
+    //std::queue<Event*> eventQueue;
+
 };
 
-class Canvas : public UniqueObject {
+class Event {
 public:
-    virtual void drawAll() = 0;
-    virtual void Quit() = 0;
-    virtual void eventLoop() = 0; // цикл снаружи
-
-    void newElement(Drawable* inner);
-
-    Drawable* searchElem(uid_t id);
-
-private:
-    std::unordered_map<uid_t, Drawable*> innerElems;
+    virtual void* ClassID();
+    /*
+    {
+        return classID;
+    }
+    */
 };
 
-class Drawable : public UniqueObject {
-public:
-    Drawable(Canvas& canvas);
+template <typename Adaptor>
+class KeyboardEvent : public Event {};
 
-    // NON_COPYBLE by default? Seems so.
+template <typename Adaptor>
+class CloseEvent : public Event {};
 
-    virtual void draw() = 0;
-
-private:
-    std::unordered_map<uid_t, Drawable*> innerElems;
-    Canvas* canvas;
-};
+template <typename Adaptor>
+class MouseEvent : public Event {};
 
 };
