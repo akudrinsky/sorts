@@ -25,9 +25,9 @@ public:
 
     Event* GetEvent();
 
-    virtual bool SaveTo(std::string filename) = 0;
+    //virtual bool SaveTo(std::string filename) = 0;
 
-    virtual bool LoadFrom(std::string filename) = 0;
+    //virtual bool LoadFrom(std::string filename) = 0;
 
     virtual void Render() = 0;
 

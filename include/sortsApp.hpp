@@ -27,7 +27,5 @@ private:
     kudry::RenderWindow<Adaptor>* backgroundImage;
     
     std::vector<kudry::RenderWindow<Adaptor>*> subwindows;
-
-    
 };
 

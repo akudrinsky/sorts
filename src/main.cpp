@@ -3,8 +3,8 @@
 #include "../include/sortsApp.hpp"
 #include "../include/makeApp.hpp"
 
-#include "cstdio"
-#include "cstring"
+#include <cstdio>
+#include <cstring>
 
 namespace {
     void checkArg(char* arg);
